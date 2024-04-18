@@ -1,0 +1,184 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "autoname": "format:CPR-{DD}-{MM}-{####}",
+ "creation": "2024-04-17 15:49:49.071019",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "amended_from",
+  "date",
+  "column_break_rpaj2",
+  "company",
+  "section_break_ghscz",
+  "activity_calculator_tab",
+  "section_break_vkqah",
+  "total_quantity",
+  "column_break_7hfkz",
+  "total_amount",
+  "section_break_ackd",
+  "column_break_bhny",
+  "shift_type",
+  "status",
+  "column_break_3",
+  "attendance_date",
+  "approver",
+  "section_break_35mnb",
+  "salary_structure",
+  "column_break_wenag",
+  "casual_salary_component",
+  "employee_section",
+  "casual_employees"
+ ],
+ "fields": [
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Casual Piece Rate",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "collapsible": 1,
+   "description": "Set filters to fetch employees",
+   "fieldname": "section_break_ackd",
+   "fieldtype": "Section Break",
+   "label": "Filters"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "column_break_bhny",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "shift_type",
+   "fieldtype": "Link",
+   "label": "Shift Type",
+   "options": "Shift Type"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attendance_date",
+   "fieldtype": "Date",
+   "label": "Attendance Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nActive\nInactive"
+  },
+  {
+   "fieldname": "section_break_ghscz",
+   "fieldtype": "Section Break",
+   "label": "Activity Calculator Section"
+  },
+  {
+   "fieldname": "activity_calculator_tab",
+   "fieldtype": "Table",
+   "label": "Activity Calculator",
+   "options": "Activity Calculator"
+  },
+  {
+   "fieldname": "section_break_vkqah",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Float",
+   "label": "Total Quantity"
+  },
+  {
+   "fieldname": "column_break_7hfkz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount"
+  },
+  {
+   "fieldname": "employee_section",
+   "fieldtype": "Section Break",
+   "label": "Select Employee"
+  },
+  {
+   "fieldname": "column_break_rpaj2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "__user",
+   "fieldname": "approver",
+   "fieldtype": "Link",
+   "label": "Approver",
+   "options": "User"
+  },
+  {
+   "fieldname": "casual_employees",
+   "fieldtype": "Table",
+   "label": "Casual Employees",
+   "options": "Casuals"
+  },
+  {
+   "fieldname": "salary_structure",
+   "fieldtype": "Link",
+   "label": "Salary Structure",
+   "options": "Salary Structure",
+   "read_only": 1
+  },
+  {
+   "fieldname": "casual_salary_component",
+   "fieldtype": "Link",
+   "label": "Casual salary Component",
+   "options": "Salary Component",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_35mnb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_wenag",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "hide_toolbar": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-04-18 17:47:46.542018",
+ "modified_by": "Administrator",
+ "module": "CSF KE",
+ "name": "Casual Piece Rate",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
