@@ -12,7 +12,7 @@
   "column_break_rpaj2",
   "company",
   "section_break_ghscz",
-  "activity_calculator_tab",
+  "casual_payrol_payout_item",
   "section_break_vkqah",
   "total_quantity",
   "column_break_7hfkz",
@@ -29,7 +29,7 @@
   "column_break_wenag",
   "casual_salary_component",
   "employee_section",
-  "casual_employees"
+  "casual_payrol_payout_employee"
  ],
  "fields": [
   {
@@ -37,7 +37,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Casual Piece Rate",
+   "options": "Casual Payroll Payout",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -90,13 +90,7 @@
   {
    "fieldname": "section_break_ghscz",
    "fieldtype": "Section Break",
-   "label": "Activity Calculator Section"
-  },
-  {
-   "fieldname": "activity_calculator_tab",
-   "fieldtype": "Table",
-   "label": "Activity Calculator",
-   "options": "Activity Calculator"
+   "label": "Casual Payrol Payout Item"
   },
   {
    "fieldname": "section_break_vkqah",
@@ -119,7 +113,7 @@
   {
    "fieldname": "employee_section",
    "fieldtype": "Section Break",
-   "label": "Select Employee"
+   "label": "Casual Payrol Payout Employee"
   },
   {
    "fieldname": "column_break_rpaj2",
@@ -131,12 +125,6 @@
    "fieldtype": "Link",
    "label": "Approver",
    "options": "User"
-  },
-  {
-   "fieldname": "casual_employees",
-   "fieldtype": "Table",
-   "label": "Casual Employees",
-   "options": "Casuals"
   },
   {
    "fieldname": "salary_structure",
@@ -159,15 +147,27 @@
   {
    "fieldname": "column_break_wenag",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "casual_payrol_payout_item",
+   "fieldtype": "Table",
+   "label": "Casual Payrol Payout Item",
+   "options": "Casual Payroll Payout Item"
+  },
+  {
+   "fieldname": "casual_payrol_payout_employee",
+   "fieldtype": "Table",
+   "label": "Casual Payrol Payout Employee",
+   "options": "Casual Payroll Payout Employee"
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-18 17:47:46.542018",
+ "modified": "2024-04-19 11:00:45.286329",
  "modified_by": "Administrator",
  "module": "CSF KE",
- "name": "Casual Piece Rate",
+ "name": "Casual Payroll Payout",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

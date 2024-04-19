@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestCasualPieceRate(FrappeTestCase):
+class TestCasualActivityItem(FrappeTestCase):
 	pass
