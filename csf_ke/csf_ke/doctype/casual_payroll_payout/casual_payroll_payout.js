@@ -3,19 +3,20 @@
 
 frappe.ui.form.on('Casual Payroll Payout', {
     refresh: function(frm) {
-        // Add a custom button to the form
-        frm.add_custom_button(__('Get Employees'), function() {
-            // Handle button click event
-            var attendanceDate = frm.doc.attendance_date;
-            var shiftType = frm.doc.shift_type;
-            var company = frm.doc.company;
-            fetchEmployees(frm, attendanceDate, shiftType, company);
-        });
-
-        frm.add_custom_button(__('Calculate Payout'), function() {
+        if(frm.doc.attendance_date!=null){
+            frm.add_custom_button(__('Get Employees'), function() {
+                // Handle button click event
+                var attendanceDate = frm.doc.attendance_date;
+                var shiftType = frm.doc.shift_type;
+                var company = frm.doc.company;
+                fetchEmployees(frm, attendanceDate, shiftType, company);
+            }),
+            frm.add_custom_button(__('Calculate Payout'), function() {
                 calculatePayout(frm);
     }
-    );
+    )
+        }
+    
     },
 
     shift_type: function(frm) {
@@ -32,47 +33,109 @@ frappe.ui.form.on('Casual Payroll Payout', {
                     }
                 }
             });
-            }
+            },
+
+            attendance_date: function(frm) {
+                frm.add_custom_button(__('Calculate Payout'), function() {
+                    calculatePayout(frm);
+        }
+        ),
+        frm.add_custom_button(__('Get Employees'), function() {
+            // Handle button click event
+            var attendanceDate = frm.doc.attendance_date;
+            var shiftType = frm.doc.shift_type;
+            var company = frm.doc.company;
+            fetchEmployees(frm, attendanceDate, shiftType, company);
+        })
+    
+      
+    }
     
 });
 
+// Define a function to handle rate, amount, and totals calculation
+function updateItemDetails(frm, cdt, cdn, child) {
+    var total_quantity = 0;
+    var total_amount = 0;
 
-//
+    frappe.call({
+        method: 'csf_ke.csf_ke.doctype.casual_payroll_payout.casual_payroll_payout.get_rate',
+        args: {
+            activity: child.activity_type,
+            item: child.item,
+        },
+        callback: function(response) {
+            if (response && response.message) {
+                var rate = response.message;
+                var amount = rate * (child.quantity || 1); // Use child.quantity or default to 1 if undefined
+
+                frappe.model.set_value(cdt, cdn, 'rate', rate);
+                frappe.model.set_value(cdt, cdn, 'amount', amount);
+
+                frm.refresh_field('casual_payroll_payout_item');
+
+                frm.doc.casual_payrol_payout_item.forEach(function(row) {
+                    total_quantity += row.quantity || 0;
+                    total_amount += row.amount || 0;
+                });
+
+                frm.set_value('total_quantity', total_quantity);
+                frm.set_value('total_amount', total_amount);
+                frm.refresh_field('total_quantity');
+                frm.refresh_field('total_amount');
+            }
+        }
+    });
+}
+
+// Attach event handlers using a single function for both 'item' and 'quantity' events
 frappe.ui.form.on('Casual Payroll Payout Item', {
+    item: function(frm, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        // Set child.quantity to 1 if it's null or undefined
+        frappe.model.set_value(cdt, cdn, 'quantity', 1.00);
+        child.quantity = child.quantity || 1;
+        updateItemDetails(frm, cdt, cdn, child);
+    },
+
     quantity: function(frm, cdt, cdn) {
-        var child = locals[cdt][cdn]; // Get the child table row object
-        var total_quantity=0
-		var total_amount=0
+        var child = locals[cdt][cdn];
+        updateItemDetails(frm, cdt, cdn, child);
+    },
+    activity_type: function(frm, cdt, cdn) {
+        const child = locals[cdt][cdn];
         frappe.call({
-            method: 'csf_ke.csf_ke.doctype.casual_payroll_payout.casual_payroll_payout.get_rate',
+            method: 'csf_ke.csf_ke.doctype.casual_payroll_payout.casual_payroll_payout.get_activity_items',
             args: {
-                activity: child.activity_type,
-                item: child.item,
+                "activity_type": child.activity_type
             },
             callback: function(response) {
-                if (response && response.message) {
-                    var rate = response.message;
-                    var amount = rate * child.quantity;
+                if (response.message) {
+                    const itemNames = response.message;
+                    // Prepare filter options based on the received item names
+                    const filterOptions = itemNames.map(item => item);
 
-                    frappe.model.set_value(cdt, cdn, 'rate', rate);
-                    frappe.model.set_value(cdt, cdn, 'amount', amount);
+                   console.log(filterOptions);
+                    frm.set_query("item", "casual_payrol_payout_item", function(doc, cdt, cdn) {
+                        let d = locals[cdt][cdn];
+                        frappe.msgprint("Tired")
+                        return {
+                            filters: {
+                                name: ['in', filterOptions.map((e) => e)]
+                            }
+                        }
+                    })
 
-                    frm.refresh_field('casual_payrol_payout_item');
-
-                    frm.doc.casual_payrol_payout_item.forEach(function(row) {
-						total_quantity += row.quantity || 0;
-						total_amount += row.amount || 0;
-					});
-					frm.set_value('total_quantity', total_quantity);
-					frm.set_value('total_amount', total_amount);
-					frm.refresh_field('total_quantity');
-					frm.refresh_field('total_amount');
+                } else {
+                    frappe.msgprint('Invalid or missing response from server. Please try again.');
                 }
+            },
+            error: function(xhr, error) {
+                frappe.msgprint('Error making server call. Please try again.');
             }
         });
     }
 });
-
 
 // Function to fetch employees based on predefined filters
 function fetchEmployees(frm, attendanceDate, shiftType, company) {
