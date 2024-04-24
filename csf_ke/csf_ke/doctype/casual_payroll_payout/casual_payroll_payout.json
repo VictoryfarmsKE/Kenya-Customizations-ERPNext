@@ -8,8 +8,6 @@
  "engine": "InnoDB",
  "field_order": [
   "amended_from",
-  "date",
-  "column_break_rpaj2",
   "company",
   "section_break_ghscz",
   "casual_payrol_payout_item",
@@ -20,10 +18,8 @@
   "section_break_ackd",
   "column_break_bhny",
   "shift_type",
-  "status",
   "column_break_3",
   "attendance_date",
-  "approver",
   "section_break_35mnb",
   "salary_structure",
   "column_break_wenag",
@@ -44,13 +40,6 @@
    "search_index": 1
   },
   {
-   "default": "Today",
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "label": "Date"
-  },
-  {
-   "collapsible": 1,
    "description": "Set filters to fetch employees",
    "fieldname": "section_break_ackd",
    "fieldtype": "Section Break",
@@ -69,8 +58,10 @@
   {
    "fieldname": "shift_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Shift Type",
-   "options": "Shift Type"
+   "options": "Shift Type",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_3",
@@ -79,14 +70,9 @@
   {
    "fieldname": "attendance_date",
    "fieldtype": "Date",
-   "label": "Attendance Date"
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Status",
-   "options": "\nActive\nInactive"
+   "label": "Attendance Date",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_ghscz",
@@ -115,17 +101,6 @@
    "fieldname": "employee_section",
    "fieldtype": "Section Break",
    "label": "Casual Payroll Payout Employee"
-  },
-  {
-   "fieldname": "column_break_rpaj2",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "__user",
-   "fieldname": "approver",
-   "fieldtype": "Link",
-   "label": "Approver",
-   "options": "User"
   },
   {
    "fieldname": "salary_structure",
@@ -162,21 +137,18 @@
    "options": "Casual Payroll Payout Employee"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "payment_processed",
    "fieldtype": "Check",
+   "ignore_user_permissions": 1,
    "label": "Payment Processed"
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "links": [
-  {
-   "link_doctype": "Additional Salary",
-   "link_fieldname": "name"
-  }
- ],
- "modified": "2024-04-23 11:45:32.366760",
+ "links": [],
+ "modified": "2024-04-24 12:56:07.842413",
  "modified_by": "Administrator",
  "module": "CSF KE",
  "name": "Casual Payroll Payout",

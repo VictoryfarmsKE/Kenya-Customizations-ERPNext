@@ -1,10 +1,10 @@
 // Copyright (c) 2024, Navari Limited and contributors
 // For license information, please see license.txt
-frappe.ui.form.on('Casual Weekly Payout', {
+frappe.ui.form.on('Casual Salary Structure Assignment Tool', {
     refresh: function(frm) {
         frm.add_custom_button(__('Calculate Payout'), function() {
             frappe.call({
-                method: 'csf_ke.csf_ke.doctype.casual_weekly_payout.casual_weekly_payout.get_employees_calculate_weekly_pay',
+                method: 'csf_ke.csf_ke.doctype.casual_salary_structure_assignment_tool.casual_salary_structure_assignment_tool.get_employees_calculate_weekly_pay',
                 args: {
                     "start_date": frm.doc.start_date,
                     "end_date": frm.doc.end_date

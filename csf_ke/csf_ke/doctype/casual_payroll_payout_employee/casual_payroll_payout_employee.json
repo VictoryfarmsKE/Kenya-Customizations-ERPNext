@@ -8,13 +8,12 @@
  "field_order": [
   "employee",
   "employee_name",
-  "shift_type",
-  "attendance",
+  "checkin",
+  "checkout",
   "column_break_frjms",
   "amount",
-  "prev_salary_structure",
-  "checkin",
-  "checkout"
+  "attendance",
+  "shift_type"
  ],
  "fields": [
   {
@@ -45,13 +44,6 @@
    "options": "Attendance"
   },
   {
-   "fieldname": "prev_salary_structure",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Previous Salary Structure",
-   "options": "Salary Structure"
-  },
-  {
    "fieldname": "amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -60,11 +52,13 @@
   {
    "fieldname": "checkin",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "CheckIn"
   },
   {
    "fieldname": "checkout",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "CheckOut"
   },
   {
@@ -75,7 +69,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-23 07:18:18.519781",
+ "modified": "2024-04-24 12:54:32.929154",
  "modified_by": "Administrator",
  "module": "CSF KE",
  "name": "Casual Payroll Payout Employee",

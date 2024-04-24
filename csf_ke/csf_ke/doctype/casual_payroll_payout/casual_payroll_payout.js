@@ -19,36 +19,18 @@ frappe.ui.form.on('Casual Payroll Payout', {
     
     },
 
-    shift_type: function(frm) {
-            var shift_type=frm.doc.shift_type;
-            frappe.call({
-                method: 'csf_ke.csf_ke.doctype.casual_payroll_payout.casual_payroll_payout.get_salary_structure_and_component',
-                args: {
-                    "shift_type":shift_type
-                },
-                callback: function(response) {
-                    if (response.message) {
-                        frm.set_value('salary_structure', response.message.salary_structure);
-                        frm.set_value('casual_salary_component', response.message.salary_component);
-                    }
-                }
-            });
-            },
-
-            attendance_date: function(frm) {
-                frm.add_custom_button(__('Calculate Payout'), function() {
-                    calculatePayout(frm);
-        }
-        ),
+    attendance_date: function(frm) { 
         frm.add_custom_button(__('Get Employees'), function() {
-            // Handle button click event
             var attendanceDate = frm.doc.attendance_date;
             var shiftType = frm.doc.shift_type;
             var company = frm.doc.company;
             fetchEmployees(frm, attendanceDate, shiftType, company);
-        })
-    
-      
+        }),
+        frm.add_custom_button(__('Calculate Payout'), function() {
+            calculatePayout(frm);
+}
+)
+     
     }
     
 });
@@ -102,39 +84,44 @@ frappe.ui.form.on('Casual Payroll Payout Item', {
         var child = locals[cdt][cdn];
         updateItemDetails(frm, cdt, cdn, child);
     },
-    activity_type: function(frm, cdt, cdn) {
-        const child = locals[cdt][cdn];
-        frappe.call({
-            method: 'csf_ke.csf_ke.doctype.casual_payroll_payout.casual_payroll_payout.get_activity_items',
-            args: {
-                "activity_type": child.activity_type
-            },
-            callback: function(response) {
-                if (response.message) {
-                    const itemNames = response.message;
-                    // Prepare filter options based on the received item names
-                    const filterOptions = itemNames.map(item => item);
-
-                   console.log(filterOptions);
-                    frm.set_query("item", "casual_payrol_payout_item", function(doc, cdt, cdn) {
-                        let d = locals[cdt][cdn];
-                        frappe.msgprint("Tired")
-                        return {
-                            filters: {
-                                name: ['in', filterOptions.map((e) => e)]
-                            }
-                        }
-                    })
-
-                } else {
-                    frappe.msgprint('Invalid or missing response from server. Please try again.');
-                }
-            },
-            error: function(xhr, error) {
-                frappe.msgprint('Error making server call. Please try again.');
-            }
-        });
-    }
+    // activity_type: function(frm, cdt, cdn) {
+    //     // const child = locals[cdt][cdn];
+    //     const child=frappe.get_doc(cdt, cdn);
+    //     frappe.call({
+    //         method: 'csf_ke.csf_ke.doctype.casual_payroll_payout.casual_payroll_payout.get_activity_items',
+    //         args: {
+    //             "activity_type": child.activity_type
+    //         },
+    //         callback: function(response) {
+    //             if (response.message) {
+    //                 const itemNames = response.message;
+                    
+    //                 // Prepare filter options based on the received item names
+    //                 const filterOptions = itemNames.map(item => item);
+    
+    //                 // Set the query for 'item' field in the current row's child table
+    //                 frm.fields_dict['casual_payrol_payout_item'].grid.get_field('item').get_query = function(doc, cdt, cdn) {
+    //                     let d = locals[cdt][cdn];
+    //                     return {
+    //                         filters: {
+    //                             name: ['in', filterOptions]
+    //                         }
+    //                     };
+    //                 };
+                    
+    //                 // Refresh the form to apply the updated query for 'item' field
+    //                 frm.refresh_field('casual_payrol_payout_item');
+    //                 frm.refresh()
+    //             } else {
+    //                 frappe.msgprint('Invalid or missing response from server. Please try again.');
+    //             }
+    //         },
+    //         error: function(xhr, error) {
+    //             frappe.msgprint('Error making server call. Please try again.');
+    //         }
+    //     });
+    // }
+    
 });
 
 // Function to fetch employees based on predefined filters
@@ -163,7 +150,7 @@ function fetchEmployees(frm, attendanceDate, shiftType, company) {
                     new_casual_payrol_payout_employee.employee_name = casual.employee_name;
                     new_casual_payrol_payout_employee.shift_type = casual.shift_type;
                     new_casual_payrol_payout_employee.attendance = casual.attendance;
-                    new_casual_payrol_payout_employee.prev_salary_structure=casual.prev_salary_structure;
+                 
                     new_casual_payrol_payout_employee.amount = casual.amount;
                     new_casual_payrol_payout_employee.checkin=casual.checkin;
                     new_casual_payrol_payout_employee.checkout=casual.checkout;

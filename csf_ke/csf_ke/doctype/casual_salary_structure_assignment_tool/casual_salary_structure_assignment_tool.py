@@ -4,7 +4,7 @@
 import frappe
 from frappe.model.document import Document
 
-class CasualWeeklyPayout(Document):
+class CasualSalaryStructureAssignmentTool(Document):
 	def on_submit(self):
 		employees_list=self.casuals_weekly_amount
 		for employee in employees_list:
@@ -16,7 +16,8 @@ class CasualWeeklyPayout(Document):
 			salary_structure_assignment.base = employee.amount
 			salary_structure_assignment.custom_casual_weekly_pay=self.name
 			salary_structure_assignment.save()
-  
+
+
 @frappe.whitelist(allow_guest=True)
 def get_employees_calculate_weekly_pay():
 	start_date=frappe.form_dict.get("start_date")
@@ -43,5 +44,6 @@ def get_employees_calculate_weekly_pay():
 						employee_total_amount[employee_name] += amount
 					else:
 						employee_total_amount[employee_name] = amount
+      
 	frappe.response['message'] = employee_total_amount
 

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:CWP-{DD}-{MM}-{YY}",
+ "autoname": "format:CWP-{DD}-{MM}-{####}",
  "creation": "2024-04-23 09:21:37.508404",
  "default_view": "List",
  "doctype": "DocType",
@@ -23,12 +23,12 @@
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "label": "Start Date"
+   "label": "Attendance Start Date"
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
-   "label": "End Date"
+   "label": "Attendance End Date"
   },
   {
    "fieldname": "section_break_lbenz",
@@ -62,7 +62,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Casual Weekly Payout",
+   "options": "Casual Salary Structure Assignment Tool",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -86,10 +86,10 @@
    "link_fieldname": "name"
   }
  ],
- "modified": "2024-04-23 16:40:46.398424",
+ "modified": "2024-04-24 14:53:24.635613",
  "modified_by": "Administrator",
  "module": "CSF KE",
- "name": "Casual Weekly Payout",
+ "name": "Casual Salary Structure Assignment Tool",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
