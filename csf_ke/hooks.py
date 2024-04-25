@@ -23,8 +23,7 @@ fixtures = [
                     "Employee-nssf_no",
                     "Employee-tax_id",
                     "Salary Component-p9a_tax_deduction_card_type",
-                    "Shift Type-custom_salary_structure",
-                    "Shift Type-custom_casual_salary_component",
+                   
                 ),
             ]
         ],
