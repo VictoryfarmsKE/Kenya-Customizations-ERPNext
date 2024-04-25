@@ -27,7 +27,8 @@ def get_employees_calculate_weekly_pay():
 # Retrieve all Casual Payroll Payout documents within the specified date range
 	casual_payout_list = frappe.get_all("Casual Payroll Payout",  filters={
 											"attendance_date": (">=", start_date),
-											"attendance_date": ("<=", end_date)
+											"attendance_date": ("<=", end_date),
+											"docstatus":1,
 										},fields=["name"])
 	if casual_payout_list:
 		for payout in casual_payout_list:
