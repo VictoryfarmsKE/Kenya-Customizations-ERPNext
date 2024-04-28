@@ -38,23 +38,28 @@ After that, you can install CSF_KE app on required site by running
 $ bench --site [site.name] install-app csf_ke
 ```
 
-##   
-Casual Payroll System
+## Casual Payroll System
 
 ### 1. Set-Up
 
 **Doctypes:**
 
--   **Activity Type:**  
+-   **Activity Type:**
+        ![Screenshot from 2024-04-28 07-40-42](https://github.com/navariltd/navari_csf_ke/assets/60258622/7e9a53c0-347c-452f-87bd-546934a455a1)
+
     Define primary tasks for casual workers, such as "Washing" or "Cleaning".
     -   Write activity type name and Save.
--   **Casual Activity Item:**  
-    Link specific items/products to activity types. Set the cost per item manipulation (e.g., washing each item costs Ksh. 150).
-    -   Choose the Activity Type
-    -   Choose the Item
-    -   Enter the cost
-    -   Save
+-   **Casual Activity Item:**
+         ![Screenshot from 2024-04-28 08-58-46](https://github.com/navariltd/navari_csf_ke/assets/60258622/36ca612f-1e12-4f22-bd81-45a732d9665e)
 
+      Link specific items/products to activity types. Set the cost per item manipulation (e.g., washing each NETM-001 costs Ksh. 150).<br/>
+
+
+    - Choose the Activity Type
+    -    Choose the Item
+    -    Enter the cost
+    -    Save
+      
 ### 2. Daily Casual Payout
 
 **Doctypes:**
@@ -62,7 +67,8 @@ Casual Payroll System
 -   **Attendance:**  
     Log daily attendance, including the type of shift worked.
     
--   **Casual Payroll Payout:**  
+-   **Casual Payroll Payout:**
+![image (1)](https://github.com/navariltd/navari_csf_ke/assets/60258622/ed9bbeea-997e-41af-a462-48e3e2d87239)
     Has two important tables.
     
     -   **Casual Payroll Payout Item:**
@@ -79,6 +85,8 @@ Casual Payroll System
 
 ### 3. Casual Salary Structure Assignment Tool
 
+
+![image (2)](https://github.com/navariltd/navari_csf_ke/assets/60258622/7fa5d17e-1ca2-475d-937c-c5580637c9cc)
 **Doctypes:**
 
 -   **Casual Salary Structure Assignment Tool:**
@@ -86,9 +94,6 @@ Casual Payroll System
     -   Click "Calculate Payout" to sum the total amount earned by all casual workers during that period.
     -   Assign the appropriate salary structure for the specified timeframe.
     -   To ensure NSSF deductions, select the structure that includes NSSF contributions for the final week.
-    -   Save and submit to automatically generate assignments for each employee, with the designated salary structure.
+    -   Save and submit to automatically generate salary structure assignments for each employee, with the designated salary structure.
 
 This system simplifies the process of calculating daily and weekly payouts for casual workers, ensuring accurate payroll processing and efficient management of salary structures.
-### License
-
-GNU General Public License (v3). See [license.txt](https://github.com/navariltd/CSF_KE/blob/master/license.txt) for more information.
