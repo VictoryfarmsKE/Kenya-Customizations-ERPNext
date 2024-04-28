@@ -16,6 +16,18 @@ class CasualSalaryStructureAssignmentTool(Document):
 			salary_structure_assignment.base = employee.amount
 			salary_structure_assignment.custom_casual_weekly_pay=self.name
 			salary_structure_assignment.save()
+   
+	def on_cancel(self):
+		casual_payout_list=casual_payout_list = frappe.get_all("Casual Payroll Payout",  filters={
+											"attendance_date": (">=", self.start_date),
+											"attendance_date": ("<=", self.end_date),
+											"docstatus":1,
+											"payment_processed":1
+										},fields=["name"])
+		for doc in casual_payout_list:
+			doc = frappe.get_doc("Casual Payroll Payout", doc.name)
+			doc.payment_processed=0
+			doc.save()
 
 
 @frappe.whitelist(allow_guest=True)
@@ -29,6 +41,7 @@ def get_employees_calculate_weekly_pay():
 											"attendance_date": (">=", start_date),
 											"attendance_date": ("<=", end_date),
 											"docstatus":1,
+											"payment_processed":0
 										},fields=["name"])
 	if casual_payout_list:
 		for payout in casual_payout_list:
@@ -45,6 +58,8 @@ def get_employees_calculate_weekly_pay():
 						employee_total_amount[employee_name] += amount
 					else:
 						employee_total_amount[employee_name] = amount
+				doc.payment_processed=1
+				doc.save()
       
 	frappe.response['message'] = employee_total_amount
 
