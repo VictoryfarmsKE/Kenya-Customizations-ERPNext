@@ -22,24 +22,9 @@
 
 • Purchase Tax Report
 
-### Installation
-
-Using bench, [install ERPNext](https://github.com/frappe/bench#installation) as mentioned here.
-
-Once ERPNext is installed, add CSF_KE app to your bench by running
-
-```sh
-$ bench get-app https://github.com/navariltd/CSF_KE.git
-```
-
-After that, you can install CSF_KE app on required site by running
-
-```sh
-$ bench --site [site.name] install-app csf_ke
-```
 
 ## Casual Payroll System
-
+The Casual Payroll System streamlines the management of casual workers' payments by providing tools for setting up activity types and linking them to specific items/products. It includes functionalities for daily attendance logging, calculating daily payouts based on attended activities, and assigning salary structures for specified timeframes. With automated rate fetching and payout calculations, this system ensures accurate and efficient payroll processing for casual workers.
 ### 1. Set-Up
 
 **Doctypes:**
@@ -97,3 +82,21 @@ $ bench --site [site.name] install-app csf_ke
     -   Save and submit to automatically generate salary structure assignments for each employee, with the designated salary structure.
 
 This system simplifies the process of calculating daily and weekly payouts for casual workers, ensuring accurate payroll processing and efficient management of salary structures.
+
+
+### Installation
+
+Using bench, [install ERPNext](https://github.com/frappe/bench#installation) as mentioned here.
+
+Once ERPNext is installed, add CSF_KE app to your bench by running
+
+```sh
+$ bench get-app https://github.com/navariltd/CSF_KE.git
+```
+
+After that, you can install CSF_KE app on required site by running
+
+```sh
+$ bench --site [site.name] install-app csf_ke
+```
+
