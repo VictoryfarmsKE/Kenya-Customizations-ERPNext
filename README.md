@@ -72,15 +72,13 @@ This system simplifies the process of calculating daily and weekly payouts for c
 ---
 <a id="Timesheet_Center"></a>
 There is usually an attempt (every hour) to create overtime timesheets, from an employee's attendance records.<br>
-Below screenshot shows the job responsible for that.
-![Screenshot from 2024-05-17 14-56-26.png](..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-05-17%2014-56-26.png)
 
 Overtime is marked in two scenarios:
 1. Additional time (more than 30 minutes) past an employee's shift end time. (Overtime 1.5)
 2. An attendance record appearing on a day that is also on an employee's holiday list. (overtime 2.0)
 
 Even though the overtime timesheets are created automatically, there may be scenarios where we would want to do this manually. Hence the ***Timesheet Center*** doctype.<br> 
-![image](https://github.com/navariltd/navari_vf/assets/55623011/be271a3b-d7ac-4135-b69b-b4dad08c71c6)
+![Screenshot from 2024-05-17 14-56-26](https://github.com/navariltd/navari_csf_ke/assets/60260520/9f41ec51-06ba-4f5f-a800-93bec9961f9a)
 Select the *Start Date* and *End Date* for which you want to generate the overtime timesheets.<br>
 Save the document.<br>
 Click on the *Generate Timesheets* button.<br>
@@ -94,7 +92,10 @@ The doctype below, *Navari Custom Payroll Settings* is important while linking a
 ---
 <a id="Navari_Custom_Payroll_Settings"></a>
 As the name suggests, settings related to payroll are stored here.
-![image](https://github.com/navariltd/navari_vf/assets/55623011/ef9b1d20-133c-4a1f-a812-ddb896ea4bde)
+
+
+![Screenshot from 2024-05-17 15-12-44](https://github.com/navariltd/navari_csf_ke/assets/60260520/4e473d4f-c225-429e-bc14-fa36dbc75ed5)
+
 1. *Maximum monthly hours:* The maximum number of hours beyond which, the rest is carried over to overtime while creating employee salary slips.
 2. *Overtime 1.5 Activity:* Overtime 1.5 is what the employee gets for working past their shift time, on a regular day. We tag the activity set here while creating timesheets for overtime 1.5
 3. *Overtime 2.0 Activity:* Overtime 2.0 is what the employeee gets for working on a day that appears on their holiday list. We tag the activity set here while creating timesheets for overtime 2.0
@@ -114,22 +115,21 @@ This is how payroll works on ERPNext:
 ### Steps for Payroll Generation
 With the biostar TA API integration, there are a few other things that happen, adding a few more steps while generating salary slips for employees who are paid per hour.
 1. Checkin/Checkout logs are fetched from the biostar server and created under [employee checkin](https://frappehr.com/docs/v14/en/employee_checkin), after every hour. Please note that [biostar settings](#Biostar_Settings) need to be configured correctly for this to happen. Also, the *Attendance Device ID (Biometric/RF tag ID)* needs to be set for employees whose checkin/checkout data needs to be fetched from biostar server.
-![image](https://github.com/navariltd/navari_vf/assets/55623011/0598dd47-ca93-4173-afc7-58ea5fd54a47)
+![Screenshot from 2024-05-17 15-18-07](https://github.com/navariltd/navari_csf_ke/assets/60260520/4322df73-e3f2-469c-b016-d83533539a6d)
 2. Attendance is marked as per the shifts assigned to each employee. This happens automatically for every shift type with *Enable Auto Attendance* checked.
-![image](https://github.com/navariltd/navari_vf/assets/55623011/d2d7d08f-3d35-4d93-8d44-25219d596931)
+![Screenshot from 2024-05-17 15-18-48](https://github.com/navariltd/navari_csf_ke/assets/60260520/87badc65-79f3-4f12-9810-5991858f7d01)
 3. Overtime timesheets are generated, from the attendance data. Happens automatically, one can also choose to generate these manually from the [timesheet center.](#Timesheet_Center)
-![image](https://github.com/navariltd/navari_vf/assets/55623011/b80bad32-b088-407d-921b-1c34faba9369)
+![Screenshot from 2024-05-17 15-19-19](https://github.com/navariltd/navari_csf_ke/assets/60260520/8bf63740-7111-4d69-a9ba-031806dd3f5b)
 4. Timesheets need to be submitted for them to be considered when running payroll.
 
 ***On the few changes to the payroll process:***
 1. Make sure to assign an *Attendance Device ID (Biometric/RF tag ID)* to every employee whose checkin/checkout data we need to fetch from biostar server.
 2. When creating a salary structure for employees who are based per hour, make sure to check the *Wage based salary (hours)* field, and fill the *Hour Rate* and *Salary Component* fields.
-![image](https://github.com/navariltd/navari_vf/assets/55623011/963cd833-ddda-497a-8858-15e19c05677a)
-3. When running payroll on payroll entry, after generating salary slips, attendance data, use that to add employees' attendance data to the salary slips. Attendance data will be picked from [attendance](https://frappehr.com/docs/v14/en/attendance) and timesheet records generated over that payroll period.
-![image](https://github.com/navariltd/navari_vf/assets/55623011/b8ceb765-f785-4c38-81ea-ffeff50196ec)
+![Screenshot from 2024-05-17 22-27-21](https://github.com/navariltd/navari_csf_ke/assets/60260520/b09aeeae-ecf9-4542-a2f5-e8c99cd2cbff)
+3. When running payroll on payroll entry, after generating salary slips, attendance data is fetched and added to employees attendance in the salary slips. Attendance data will be picked from [attendance](https://frappehr.com/docs/v14/en/attendance) and timesheet records generated over that payroll period.
 4. Attendance data will be added to the *Attendance Details* tab on a salary slip.
-![image](https://github.com/navariltd/navari_vf/assets/55623011/2b3b092d-07fc-4f99-8385-09e56cd01fe6)
-![image](https://github.com/navariltd/navari_vf/assets/55623011/326afec4-b091-4eea-9a30-f693975a233d)
+![Screenshot from 2024-05-17 22-31-11](https://github.com/navariltd/navari_csf_ke/assets/60260520/44c3fd26-c789-4aac-871b-376db5051f16)
+
 <br>
 *1. Attendance:* Picked from an employee's attendance records over that payroll period<br>
 > *Payment Hours* - this is a custom field in attendance doctype which accurately captures total shift hours, excluding unpaid breaks if any and overtime. It is captured as billable hours in Attendance Details in Salary Slip.<br>
@@ -141,13 +141,14 @@ With the biostar TA API integration, there are a few other things that happen, a
 *6. Holiday hours:* Sum of hours from *Overtime 2.0* table.<br>
 *7. Hourly Rate:* Fetched from the salary structure assigned to an employee. Used to calculate basic and overtime pay (Both regular and holiday overtime)<br>
 See salary structure below:
-![image](https://github.com/navariltd/navari_vf/assets/55623011/05aa4cc8-70d3-478c-87b2-ed2a9366dd60)
+![Screenshot from 2024-05-17 22-34-31](https://github.com/navariltd/navari_csf_ke/assets/60260520/fcc6c265-efb6-425e-9c26-ddb0a348c55b)
+
 ```Basic salary = (hourly_rate * regular_working_hours)``` <br>
 ```OT hours = hourly_rate * 1.5 * overtime_hours``` <br>
 ```Holiday Hours = hourly_rate * 2 * holiday_hours```<br>
 *NB: OT here refers to regular overtime*<br>
 See how the hours from the above screenshots reflect on earnings and deductions:
-![image](https://github.com/navariltd/navari_vf/assets/55623011/1029aab2-73c9-4c5c-be64-235967cf198b)
+![Screenshot from 2024-05-17 22-49-36](https://github.com/navariltd/navari_csf_ke/assets/60260520/1d0c770f-de32-451c-b1e8-704330bfe398)
 
 
 
