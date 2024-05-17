@@ -2,17 +2,11 @@
 
 ### Includes:
 
-### Kenya Payroll Reports
-• P9A Tax Deduction Card
-• NSSF Report
-• NHIF Report
-• HELB Report
-• Bank Payroll Advice Report
-• Payroll Register Report
+## Kenya Payroll Reports
+• P9A Tax Deduction Card, P10 Tax Report, NSSF Report, NHIF Report, HELB Report, Bank Payroll Advice Report, and Payroll Register Report
 
-### Sales and Purchase Tax Reports
-• Sales Tax Report
-• Purchase Tax Report
+## Sales and Purchase Tax Reports
+• Sales Tax Report and Purchase Tax Report
 
 ## Casual Payroll Customization
 The Casual Payroll System streamlines the management of casual workers' payments by providing tools for setting up activity types and linking them to specific items/products. It includes functionalities for daily attendance logging, calculating daily payouts based on attended activities, and assigning salary structures for specified timeframes. With automated rate fetching and payout calculations, this system ensures accurate and efficient payroll processing for casual workers.
