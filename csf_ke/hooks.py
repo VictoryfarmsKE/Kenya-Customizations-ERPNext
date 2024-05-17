@@ -152,6 +152,13 @@ doctype_js = {"Activity Type" : "csf_ke/client_scripts/activity_type_mapper.js"}
 # 	]
 # }
 
+scheduler_events = {
+	"hourly": [
+        "csf_ke.controllers.generate_overtime_timesheets.generate_overtime_timesheets",
+    ]
+}
+
+
 # Testing
 # -------
 
