@@ -1,6 +1,6 @@
-### EXPNext Country Specific Functionality for Kenya
+# EXPNext Country Specific Functionality for Kenya
 
-### Includes:
+## Includes:
 
 ## Kenya Payroll Reports
 • P9A Tax Deduction Card, P10 Tax Report, NSSF Report, NHIF Report, HELB Report, Bank Payroll Advice Report, and Payroll Register Report
