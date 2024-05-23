@@ -151,12 +151,6 @@ fixtures = [
 # 	]
 # }
 
-scheduler_events = {
-	"hourly": [
-        "csf_ke.controllers.generate_overtime_timesheets.generate_overtime_timesheets",
-    ]
-}
-
 
 # Testing
 # -------
