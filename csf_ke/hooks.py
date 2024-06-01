@@ -1,13 +1,14 @@
 from . import __version__ as app_version
 
 app_name = "csf_ke"
-app_title = "CSF KE"
-app_publisher = "Navari Limited"
-app_description = "Country Specific Functionality for Kenya"
+app_title = "Navari Country Specific Customizations for Kenya"
+app_publisher = "Navari Ltd"
+app_description = "ERPNext and FrappeHR Country Specific Customizations for Kenya by Navari Ltd"
 app_icon = "drag"
 app_color = "grey"
 app_email = "info@navari.co.ke"
 app_license = "GNU General Public License (v3)"
+required_apps = ["frappe/erpnext/hrms"]
 
 
 fixtures = [
